@@ -12,11 +12,11 @@ resource "proxmox_vm_qemu" "master" {
   ipconfig0 = var.ip_dhcp ? "ip=dhcp" : "ip=${var.ip_network_id}.${var.ip_network_host_master + count.index}/24,gw=${var.ip_gateway}"
   nameserver = var.ip_dhcp ? "" : var.ip_dns_nameserver
 
-  cores    = var.cpu_cores
-  sockets  = var.cpu_socket
-  vcpus    = var.vcpus
-  memory   = var.memory
-  balloon  = var.balloon
+  cores    = var.cpu_cores_master
+  sockets  = var.cpu_socket_master
+  vcpus    = var.vcpus_master
+  memory   = var.memory_master
+  balloon  = var.balloon_master
   hotplug  = var.hotplug
   scsihw   = var.scsihw
   bootdisk = var.bootdisk
@@ -35,8 +35,8 @@ resource "proxmox_vm_qemu" "master" {
       virtio0 {
         disk {
           format  = var.disk_format
-          size    = var.disk_size
-          storage = var.disk_storage
+          size    = var.disk_size_master
+          storage = var.disk_storage_master
           discard = var.disk_discard
         }
       }
@@ -44,7 +44,7 @@ resource "proxmox_vm_qemu" "master" {
     ide {
       ide2 {
         cloudinit {
-          storage = var.disk_storage
+          storage = var.disk_storage_master
         }
       }
     }

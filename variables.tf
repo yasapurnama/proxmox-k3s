@@ -108,6 +108,36 @@ variable "ip_dns_nameserver" {
   default     = "8.8.8.8"
 }
 
+variable "cpu_cores_master" {
+  description = "The number of CPU cores for the master VMs"
+  type        = number
+  default     = 2
+}
+
+variable "cpu_socket_master" {
+  description = "The number of CPU sockets for the master VMs"
+  type        = number
+  default     = 1
+}
+
+variable "vcpus_master" {
+  description = "The number of vCPUs for the master VMs"
+  type        = number
+  default     = 2
+}
+
+variable "memory_master" {
+  description = "The amount of memory in MB for the master VMs"
+  type        = number
+  default     = 2048
+}
+
+variable "balloon_master" {
+  description = "The balloon memory for the master VMs"
+  type        = number
+  default     = 0
+}
+
 variable "cpu_cores" {
   description = "The number of CPU cores for the VMs"
   type        = number
@@ -196,6 +226,18 @@ variable "disk_format" {
   description = "The format of disk for the VMs"
   type        = string
   default     = "qcow2"
+}
+
+variable "disk_size_master" {
+  description = "The size of the disk in GB for the master VMs"
+  type        = number
+  default     = 20
+}
+
+variable "disk_storage_master" {
+  description = "The name of the disk storage to use for the master VMs"
+  type        = string
+  default     = "local-lvm"
 }
 
 variable "disk_size" {
